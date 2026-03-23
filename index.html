@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OC — NestJS Backend Developer | Abuja, Nigeria</title>
+  <meta name="description" content="OC is a backend developer based in Abuja, Nigeria specialising in NestJS, Node.js, Prisma, PostgreSQL and TypeScript. Available for remote work." />
+  <meta name="author" content="OC" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="OC — NestJS Backend Developer" />
+  <meta property="og:description" content="Backend developer specialising in NestJS, Node.js, Prisma & PostgreSQL. Based in Abuja — open to remote." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Google Fonts: Fraunces (display) + DM Sans (body) + DM Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Tailwind CSS via Play CDN (fine for personal/portfolio sites) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    /* ── Tailwind theme config ─────────────────────────── */
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary:   '#D97706',
+            secondary: '#6B7280',
+            bgdark:    '#111111',
+            bgcard:    '#1A1A1A',
+            bgborder:  '#2A2A2A',
+            textlight: '#F5F5F5',
+            textmuted: '#A0A0A0',
+          },
+          fontFamily: {
+            display: ['"Fraunces"', 'serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+            mono:    ['"DM Mono"', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS (animations, scrollbar, grain, component classes) -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="font-body">
+
+  <!-- NAVIGATION -->
+  <nav id="nav" aria-label="Primary navigation">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+      <!-- Wordmark -->
+      <a href="#hero" class="font-display text-xl font-semibold tracking-tight text-textlight hover:text-primary transition-colors">
+        OC<span class="text-primary">.</span>
+      </a>
+
+      <!-- Desktop links -->
+      <ul class="hidden md:flex items-center gap-8 text-sm text-textmuted font-medium" role="list">
+        <li><a href="#skills"   class="nav-link hover:text-textlight transition-colors">Skills</a></li>
+        <li><a href="#projects" class="nav-link hover:text-textlight transition-colors">Projects</a></li>
+        <li><a href="#about"    class="nav-link hover:text-textlight transition-colors">About</a></li>
+        <li><a href="#contact"  class="nav-link hover:text-textlight transition-colors">Contact</a></li>
+        <li><a href="#contact"  class="btn-primary text-xs px-4 py-2">Hire me</a></li>
+      </ul>
+
+      <!-- Mobile hamburger -->
+      <button id="hamburger" aria-label="Toggle menu" aria-expanded="false"
+              class="md:hidden text-textmuted hover:text-primary transition-colors p-1">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu" role="navigation" aria-label="Mobile menu">
+      <ul class="flex flex-col px-6 py-4 gap-4 text-sm text-textmuted font-medium" role="list">
+        <li><a href="#skills"   class="nav-link block hover:text-primary transition-colors">Skills</a></li>
+        <li><a href="#projects" class="nav-link block hover:text-primary transition-colors">Projects</a></li>
+        <li><a href="#about"    class="nav-link block hover:text-primary transition-colors">About</a></li>
+        <li><a href="#contact"  class="nav-link block hover:text-primary transition-colors">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-20">
+
+    <!-- Ambient amber glows (decorative) -->
+    <div class="glow-amber" style="width:600px;height:600px;top:-120px;right:-180px;opacity:0.6;" aria-hidden="true"></div>
+    <div class="glow-amber" style="width:300px;height:300px;bottom:80px;left:-80px;opacity:0.4;"  aria-hidden="true"></div>
+
+    <!-- Large decorative section number -->
+    <div class="section-bg-number" style="top:128px;right:32px;" aria-hidden="true">01</div>
+
+    <div class="max-w-6xl mx-auto px-6 py-24 w-full">
+
+      <!-- Availability badge -->
+      <div class="reveal flex items-center gap-3 mb-10">
+        <span class="avail-dot"></span>
+        <span class="font-mono text-xs text-textmuted tracking-widest uppercase">Available for remote work</span>
+        <span class="font-mono text-xs text-textmuted opacity-50">·</span>
+        <span class="font-mono text-xs text-textmuted tracking-wide">Abuja, Nigeria (WAT)</span>
+      </div>
+
+      <!-- Name -->
+      <h1 class="reveal font-display text-[clamp(3.5rem,10vw,7.5rem)] font-semibold leading-[0.95] tracking-tight mb-6">
+        <span class="text-textlight">OC</span><span class="text-primary">.</span>
+      </h1>
+
+      <!-- Title -->
+      <p class="reveal font-display text-[clamp(1.1rem,2.5vw,1.6rem)] font-light italic text-textmuted mb-8 max-w-lg leading-relaxed"
+         style="transition-delay:60ms">
+        Backend Developer —<br class="sm:hidden" />
+        <span class="text-textlight not-italic font-normal">NestJS · Node.js · Prisma · PostgreSQL</span>
+      </p>
+
+      <!-- Bio -->
+      <p class="reveal text-textmuted text-base leading-loose max-w-xl mb-12" style="transition-delay:120ms">
+        I'm a backend developer who builds clean, reliable APIs, audit logging systems, and solid data layers that actually work in production. Self-taught from Abuja, Nigeria,
+        <span class="text-textlight">I'm timezone-friendly for US/EU clients</span>
+        and always prioritize good architecture over quick fixes. I've shipped my own NestJS audit-log package on npm and I'm ready to help with yours.
+      </p>
+
+      <!-- CTAs -->
+      <div class="reveal flex flex-wrap gap-4" style="transition-delay:180ms">
+        <a href="#projects" class="btn-primary">
+          <i class="fa-solid fa-layer-group text-xs"></i> View Projects
+        </a>
+        <a href="#contact" class="btn-ghost">
+          <i class="fa-regular fa-envelope text-xs"></i> Get in touch
+        </a>
+        <a href="https://github.com/ochochecharles" target="_blank" rel="noopener"
+           class="btn-ghost" aria-label="GitHub profile">
+          <i class="fa-brands fa-github text-sm"></i>
+        </a>
+        <a href="https://x.com/ochochecharles" target="_blank" rel="noopener"
+           class="btn-ghost" aria-label="X / Twitter profile">
+          <i class="fa-brands fa-x-twitter text-sm"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30 animate-bounce"
+         aria-hidden="true">
+      <span class="font-mono text-[10px] tracking-widest uppercase text-textmuted">Scroll</span>
+      <i class="fa-solid fa-chevron-down text-xs text-textmuted"></i>
+    </div>
+  </section>
+
+
+  <!--SKILLS -->
+  <section id="skills" class="py-28 relative">
+    <div class="section-bg-number" style="top:0;right:64px;" aria-hidden="true">02</div>
+
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="reveal section-rule"><span>Skills &amp; Tools</span></div>
+
+      <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-16">
+
+        <!-- Core stack -->
+        <div>
+          <h2 class="font-display text-2xl font-semibold text-textlight mb-2">Core Stack</h2>
+          <p class="text-textmuted text-sm mb-7 leading-relaxed">What I use to build production backends day to day.</p>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="skill-badge"><i class="fa-solid fa-server text-xs"></i> NestJS</span>
+            <span class="skill-badge"><i class="fa-brands fa-node-js text-xs"></i> Node.js</span>
+            <span class="skill-badge"><i class="fa-brands fa-js text-xs"></i> JavaScript</span>
+            <span class="skill-badge"><i class="fa-brands fa-js text-xs"></i> TypeScript</span>
+            <span class="skill-badge"><i class="fa-solid fa-database text-xs"></i> Prisma</span>
+            <span class="skill-badge"><i class="fa-solid fa-database text-xs"></i> PostgreSQL</span>
+            <span class="skill-badge"><i class="fa-solid fa-code text-xs"></i> REST APIs</span>
+            <span class="skill-badge"><i class="fa-solid fa-shield-halved text-xs"></i> Auth / JWT</span>
+            <span class="skill-badge"><i class="fa-solid fa-layer-group text-xs"></i> ORMs</span>
+          </div>
+        </div>
+
+        <!-- Secondary skills -->
+        <div>
+          <h2 class="font-display text-2xl font-semibold text-textlight mb-2">Also Comfortable With</h2>
+          <p class="text-textmuted text-sm mb-7 leading-relaxed">Supporting tools and practices I've used in real projects or refreshed recently.</p>
+
+          <div class="flex flex-wrap gap-3">
+            <span class="skill-badge"><i class="fa-brands fa-git-alt text-xs"></i> Git / GitHub</span>
+            <span class="skill-badge"><i class="fa-solid fa-file-code text-xs"></i> HTML / CSS / Tailwind</span>
+            <span class="skill-badge"><i class="fa-brands fa-react text-xs"></i> React (past projects)</span>
+            <span class="skill-badge"><i class="fa-solid fa-fire text-xs"></i> Firebase</span>
+            <span class="skill-badge"><i class="fa-solid fa-terminal text-xs"></i> CLI / Terminal</span>
+            <span class="skill-badge"><i class="fa-solid fa-bolt text-xs"></i> Vercel</span>
+            <span class="skill-badge"><i class="fa-solid fa-magnifying-glass text-xs"></i> Audit Logging</span>
+            <!-- Add these after quick learning if you do them -->
+            <!-- <span class="skill-badge"><i class="fa-brands fa-docker text-xs"></i> Docker (basics)</span> -->
+            <!-- <span class="skill-badge"><i class="fa-solid fa-vial text-xs"></i> Jest (unit testing basics)</span> -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-28 relative">
+    <div class="section-bg-number" style="top:0;left:64px;" aria-hidden="true">03</div>
+
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="reveal section-rule"><span>Projects</span></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- Project 1: Audit Log -->
+        <article class="reveal project-card p-8 flex flex-col gap-6">
+
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-mono text-xs text-primary tracking-widest uppercase">npm package</span>
+                <span class="w-1 h-1 rounded-full bg-bgborder"></span>
+                <span class="font-mono text-xs text-textmuted">open-source</span>
+              </div>
+              <h3 class="font-display text-xl font-semibold text-textlight leading-tight">
+                Audit Logging System
+              </h3>
+            </div>
+            <!-- Icon links -->
+            <div class="flex gap-2 shrink-0">
+              <a href="https://github.com/ochochecharles/audit-log" target="_blank" rel="noopener"
+                 aria-label="GitHub — audit-log" class="card-icon-btn">
+                <i class="fa-brands fa-github text-sm"></i>
+              </a>
+              <a href="https://www.npmjs.com/package/@ochoche/audit-log" target="_blank" rel="noopener"
+                 aria-label="npm — @ochoche/audit-log" class="card-icon-btn">
+                <i class="fa-brands fa-npm text-sm"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Code preview (decorative) -->
+          <div class="rounded-lg border border-bgborder bg-[#141414] p-5 font-mono text-xs      leading-relaxed text-textmuted"
+            aria-hidden="true">
+            <span class="text-secondary">// Core save logic from @ochoche/audit-log</span><br/><br/>
+            
+            <span class="text-blue-400">async</span> <span class="text-green-400">saveLog</span><span>(log: AuditLogEntry): Promise&lt;void&gt; {</span><br/>
+            <span class="pl-4 text-blue-400">await</span> <span class="text-green-400">this.prisma</span>.auditLog.create({ data: log });</span><br/>
+            <span>}</span>
+          </div>
+
+          <p class="text-textmuted text-sm leading-relaxed">
+            A NestJS interceptor-based audit log library that transparently captures request/response details —
+            IP address, device info, geo-location via GeoIP, authenticated user ID, and before/after state diffs —
+            and persists them to a database via Prisma.
+            Built for compliance, security auditing, and debugging in production APIs.
+          </p>
+
+          <!-- Tech badges -->
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span class="tech-tag">NestJS</span>
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Prisma</span>
+            <span class="tech-tag">GeoIP</span>
+            <span class="tech-tag">PostgreSQL</span>
+          </div>
+
+          <!-- CTA links -->
+          <div class="flex gap-3 flex-wrap pt-1">
+            <a href="https://github.com/ochochecharles/audit-log" target="_blank" rel="noopener"
+               class="btn-ghost text-xs px-4 py-2">
+              <i class="fa-brands fa-github"></i> View Source
+            </a>
+            <a href="https://www.npmjs.com/package/@ochoche/audit-log" target="_blank" rel="noopener"
+               class="btn-primary text-xs px-4 py-2">
+              <i class="fa-brands fa-npm"></i> npm install
+            </a>
+          </div>
+        </article>
+
+
+        <!-- Project 2: MediLink -->
+        <article class="reveal project-card p-8 flex flex-col gap-6" style="transition-delay:80ms">
+
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-mono text-xs text-primary tracking-widest uppercase">fullstack app</span>
+                <span class="w-1 h-1 rounded-full bg-bgborder"></span>
+                <span class="font-mono text-xs text-textmuted">live demo</span>
+              </div>
+              <h3 class="font-display text-xl font-semibold text-textlight leading-tight">
+                MediLink — Appointment Booking
+              </h3>
+            </div>
+            <div class="flex gap-2 shrink-0">
+              <a href="https://github.com/ochochecharles/Appointment-booking-system" target="_blank" rel="noopener"
+                 aria-label="GitHub — MediLink" class="card-icon-btn">
+                <i class="fa-brands fa-github text-sm"></i>
+              </a>
+              <a href="https://appointment-booking-system-ten.vercel.app" target="_blank" rel="noopener"
+                 aria-label="MediLink live demo" class="card-icon-btn">
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Browser mockup (decorative) -->
+          <!--
+            To show a real screenshot instead, replace the div below with:
+            <img src="images/medilink-preview.png" alt="MediLink appointment booking app screenshot"
+                 class="rounded-lg border border-bgborder w-full object-cover h-36" />
+          -->
+          <div class="rounded-lg border border-bgborder bg-[#141414] p-5" aria-hidden="true">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-2 h-2 rounded-full bg-red-500/60"></div>
+              <div class="w-2 h-2 rounded-full bg-yellow-500/60"></div>
+              <div class="w-2 h-2 rounded-full bg-green-500/60"></div>
+              <div class="ml-2 flex-1 h-4 rounded bg-bgborder/80 font-mono text-[10px] text-textmuted flex items-center px-3">
+                appointment-booking-system-ten.vercel.app
+              </div>
+            </div>
+            <div class="space-y-2">
+              <div class="h-3 rounded bg-primary/20 w-2/3"></div>
+              <div class="h-2 rounded bg-bgborder w-full"></div>
+              <div class="h-2 rounded bg-bgborder w-5/6"></div>
+              <div class="mt-3 flex gap-2">
+                <div class="h-8 rounded bg-primary/30 w-24"></div>
+                <div class="h-8 rounded bg-bgborder w-20"></div>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-textmuted text-sm leading-relaxed">
+            A full-stack appointment booking app (v1 prototype) with a React frontend and Firebase backend.
+            Users can book, view, reschedule, and manage appointments with a clean UI.
+            Built as a proof-of-concept for healthcare or service-business scheduling flows.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mt-auto">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Vercel</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+
+          <div class="flex gap-3 flex-wrap pt-1">
+            <a href="https://github.com/ochochecharles/Appointment-booking-system" target="_blank" rel="noopener"
+               class="btn-ghost text-xs px-4 py-2">
+              <i class="fa-brands fa-github"></i> View Source
+            </a>
+            <a href="https://appointment-booking-system-ten.vercel.app" target="_blank" rel="noopener"
+               class="btn-primary text-xs px-4 py-2">
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Live Demo
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="py-28 relative border-t border-bgborder">
+    <div class="section-bg-number" style="top:0;right:64px;" aria-hidden="true">04</div>
+
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="reveal section-rule"><span>About</span></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+
+        <!-- Text -->
+        <div class="reveal space-y-6">
+          <h2 class="font-display text-3xl md:text-4xl font-semibold text-textlight leading-tight">
+            I care more about<br/>
+            <span class="italic font-light text-primary">how it works than how it looks.</span>
+          </h2>
+
+          <p class="text-textmuted leading-loose text-sm">
+            I'm OC, a backend developer from Abuja, Nigeria who switched from frontend
+            and never looked back. About two years in, focused on the NestJS ecosystem:
+            APIs, data layers, audit trails, things that have to actually work.
+          </p>
+
+          <p class="text-textmuted leading-loose text-sm">
+            No paid clients yet, but I've shipped real things — including an
+            <span class="text-textlight">open-source audit logging library</span>.
+            I'm looking for a first serious opportunity. WAT (UTC+1). When I'm not
+            in a codebase I'm probably watching anime
+            (<span class="text-textlight">Eren &amp; Itachi stan</span>, no debate).
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <span class="flex items-center gap-2 text-xs text-textmuted">
+              <i class="fa-solid fa-location-dot text-primary text-xs"></i> Abuja, Nigeria
+            </span>
+            <span class="flex items-center gap-2 text-xs text-textmuted">
+              <i class="fa-regular fa-clock text-primary text-xs"></i> WAT (UTC+1)
+            </span>
+            <span class="flex items-center gap-2 text-xs text-textmuted">
+              <i class="fa-solid fa-globe text-primary text-xs"></i> Remote-first
+            </span>
+          </div>
+        </div>
+
+        <!-- Stats cards -->
+        <div class="reveal grid grid-cols-2 gap-4" style="transition-delay:100ms">
+          <div class="bg-bgcard border border-bgborder rounded-xl p-6">
+            <div class="font-display text-3xl font-semibold text-primary mb-1">2+</div>
+            <div class="text-xs text-textmuted leading-snug">Years building backend systems</div>
+          </div>
+          <div class="bg-bgcard border border-bgborder rounded-xl p-6">
+            <div class="font-display text-3xl font-semibold text-primary mb-1">1</div>
+            <div class="text-xs text-textmuted leading-snug">npm package published</div>
+          </div>
+          <div class="bg-bgcard border border-bgborder rounded-xl p-6">
+            <div class="font-display text-3xl font-semibold text-primary mb-1">∞</div>
+            <div class="text-xs text-textmuted leading-snug">Lines of TypeScript (roughly)</div>
+          </div>
+          <div class="bg-bgcard border border-bgborder rounded-xl p-6 flex flex-col justify-between">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="avail-dot"></span>
+              <span class="text-xs text-green-400 font-medium">Open to work</span>
+            </div>
+            <div class="text-xs text-textmuted leading-snug">Available for freelance &amp; contract roles</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-28 relative border-t border-bgborder">
+    <div class="section-bg-number" style="top:0;left:64px;" aria-hidden="true">05</div>
+
+    <div class="max-w-6xl mx-auto px-6">
+
+      <div class="reveal section-rule"><span>Contact</span></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-16">
+
+        <!-- Left: contact info -->
+        <div class="reveal lg:col-span-2 space-y-8">
+          <div>
+            <h2 class="font-display text-3xl font-semibold text-textlight mb-3 leading-tight">
+              Let's build something<br/>
+              <span class="italic font-light text-primary">worth shipping.</span>
+            </h2>
+            <p class="text-textmuted text-sm leading-relaxed">
+              Have a project in mind? Looking for a backend engineer for your team?
+              Drop a message and I'll get back to you within 24 hours.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            <a href="mailto:ochochecharles@gmail.com"
+               class="contact-link group">
+              <span class="contact-link-icon group-hover:border-primary/40">
+                <i class="fa-regular fa-envelope text-xs"></i>
+              </span>
+              ochochecharles@gmail.com
+            </a>
+            <a href="https://x.com/ochochecharles" target="_blank" rel="noopener"
+               class="contact-link group">
+              <span class="contact-link-icon group-hover:border-primary/40">
+                <i class="fa-brands fa-x-twitter text-xs"></i>
+              </span>
+              @ochochecharles
+            </a>
+            <a href="https://github.com/ochochecharles" target="_blank" rel="noopener"
+               class="contact-link group">
+              <span class="contact-link-icon group-hover:border-primary/40">
+                <i class="fa-brands fa-github text-xs"></i>
+              </span>
+              github.com/ochochecharles
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: contact form -->
+        <div class="reveal lg:col-span-3" style="transition-delay:80ms">
+          
+          <form action="https://formspree.io/f/xlgpynzq" method="POST"
+                id="contact-form" class="space-y-5" novalidate>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name" class="form-label">Name</label>
+                <input id="name" name="name" type="text" required autocomplete="name"
+                       placeholder="Jane Smith" class="form-input" />
+              </div>
+              <div>
+                <label for="email" class="form-label">Email</label>
+                <input id="email" name="email" type="email" required autocomplete="email"
+                       placeholder="jane@company.com" class="form-input" />
+              </div>
+            </div>
+
+            <div>
+              <label for="subject" class="form-label">Subject</label>
+              <input id="subject" name="subject" type="text"
+                     placeholder="Backend project — Upwork / contract" class="form-input" />
+            </div>
+
+            <div>
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" name="message" required rows="5"
+                        placeholder="Tell me about the project, timeline, and budget..."
+                        class="form-input resize-none"></textarea>
+            </div>
+
+            <!-- Honeypot — keeps bots out, hidden from real users -->
+            <input type="text" name="_gotcha" style="display:none" aria-hidden="true" tabindex="-1" />
+
+            <div class="flex items-center justify-between flex-wrap gap-4">
+              <p class="text-xs text-textmuted">I typically reply within 24 hours.</p>
+              <button type="submit" id="submit-btn" class="btn-primary">
+                <i class="fa-regular fa-paper-plane text-xs"></i> Send Message
+              </button>
+            </div>
+
+            <!-- Feedback messages (shown/hidden by script.js) -->
+            <div id="form-success" class="hidden rounded-lg border border-green-800 bg-green-950/30 px-4 py-3 text-green-400 text-sm">
+              <i class="fa-solid fa-circle-check mr-2"></i> Message sent! I'll get back to you soon.
+            </div>
+            <div id="form-error" class="hidden rounded-lg border border-red-800 bg-red-950/30 px-4 py-3 text-red-400 text-sm">
+              <i class="fa-solid fa-circle-exclamation mr-2"></i> Something went wrong. Try emailing me directly.
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="border-t border-bgborder py-10">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+
+      <div class="font-display text-base font-semibold text-textlight">
+        OC<span class="text-primary">.</span>
+      </div>
+
+      <p class="text-xs text-textmuted text-center">
+        &copy; 2026 OC. All rights reserved.
+      </p>
+
+      <div class="flex gap-4">
+        <a href="https://github.com/ochochecharles" target="_blank" rel="noopener"
+           aria-label="GitHub" class="footer-link text-sm">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://x.com/ochochecharles" target="_blank" rel="noopener"
+           aria-label="X / Twitter" class="footer-link text-sm">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="mailto:ochochecharles@gmail.com"
+           aria-label="Email" class="footer-link text-sm">
+          <i class="fa-regular fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- JavaScript file -->
+  <script src="script.js" defer></script>
+
+</body>
+</html>

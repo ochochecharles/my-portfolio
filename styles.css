@@ -1,0 +1,390 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'DM Sans', sans-serif;
+}
+
+body {
+  background-color: #111111;
+  color: #F5F5F5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #D97706;
+  color: #111;
+}
+
+/* 
+   GRAIN OVERLAY
+   Adds a subtle film-grain texture over the whole page.
+   pointer-events: none ensures it never blocks clicks.
+ */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* 
+   CUSTOM SCROLLBAR (WebKit only)
+ */
+
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #D97706; border-radius: 2px; }
+
+/* 
+   NAVIGATION
+   Fixed + frosted glass effect. JS adds .scrolled class.
+ */
+
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(17, 17, 17, 0.82);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.3s;
+}
+
+#nav.scrolled {
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+}
+
+
+/* 
+   MOBILE MENU
+   Hidden by default; JS toggles the .open class.
+ */
+
+#mobile-menu {
+  display: none;
+  background: rgba(17, 17, 17, 0.97);
+  border-bottom: 1px solid #2A2A2A;
+}
+
+#mobile-menu.open {
+  display: block;
+}
+
+
+/* 
+   SCROLL-REVEAL ANIMATION
+   Elements start invisible + shifted down.
+   JS adds .visible class via IntersectionObserver.
+ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity   0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* 
+   SECTION DECORATIVE BACKGROUND NUMBER
+   Large ghost number (e.g. "01", "02") behind each section.
+   Position is set inline in HTML so each section can vary.
+ */
+
+.section-bg-number {
+  position: absolute;
+  font-family: 'Fraunces', serif;
+  font-size: 140px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.025);
+  user-select: none;
+  pointer-events: none;
+  display: none;         /* hidden on mobile */
+}
+
+@media (min-width: 1024px) {
+  .section-bg-number { display: block; }
+}
+
+
+/* 
+   AMBIENT GLOW BLOB
+   Used in the hero for warm background ambience.
+ */
+
+.glow-amber {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+
+/* 
+   SECTION RULE (heading divider)
+   LABEL
+ */
+
+.section-rule {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.section-rule span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #D97706;
+  white-space: nowrap;
+}
+
+.section-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #2A2A2A;
+}
+
+
+/* 
+   BUTTONS
+ */
+
+/* Filled amber button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: #D97706;
+  color: #111;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  background: #F59E0B;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.35);
+}
+
+/* Outlined ghost button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  background: transparent;
+  color: #A0A0A0;
+  border: 1px solid #2A2A2A;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.88rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.btn-ghost:hover {
+  color: #D97706;
+  border-color: rgba(217, 119, 6, 0.4);
+  background: rgba(217, 119, 6, 0.05);
+}
+
+
+/* 
+   PROJECT CARDS
+ */
+
+.project-card {
+  background: #1A1A1A;
+  border: 1px solid #2A2A2A;
+  border-radius: 12px;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.project-card:hover {
+  border-color: rgba(217, 119, 6, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(217, 119, 6, 0.15);
+}
+
+/* Small square icon button inside project card header */
+.card-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #2A2A2A;
+  color: #A0A0A0;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.card-icon-btn:hover {
+  color: #D97706;
+  border-color: rgba(217, 119, 6, 0.4);
+}
+
+/* Small monospace tag inside project cards */
+.tech-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: #2A2A2A;
+  color: #A0A0A0;
+}
+
+
+/* 
+   SKILL BADGES
+ */
+
+.skill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: rgba(42, 42, 42, 0.9);
+  border: 1px solid #333;
+  color: #A0A0A0;
+  cursor: default;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.skill-badge:hover {
+  color: #D97706;
+  border-color: rgba(217, 119, 6, 0.4);
+  background: rgba(217, 119, 6, 0.07);
+}
+
+
+/* 
+   CONTACT FORM
+ */
+
+.form-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #A0A0A0;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  background: #1A1A1A;
+  border: 1px solid #2A2A2A;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #F5F5F5;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input::placeholder {
+  color: #444;
+}
+
+.form-input:focus {
+  border-color: #D97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.12);
+}
+
+/* Contact info links (email / X / GitHub row) */
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.875rem;
+  color: #A0A0A0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-link:hover {
+  color: #D97706;
+}
+
+.contact-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid #2A2A2A;
+  flex-shrink: 0;
+  transition: border-color 0.2s;
+}
+
+
+/* 
+   AVAILABILITY DOT
+   Pulsing green dot used in hero + about section.
+ */
+
+.avail-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+  animation: pulse-dot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2); }
+  50%       { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.0); }
+}
+
+
+/* 
+   FOOTER LINKS
+ */
+
+.footer-link {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: #D97706;
+}
